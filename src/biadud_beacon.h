@@ -3,7 +3,7 @@
 // ************************************************************************************************
 // * Author:     Maxime MARCONATO (maxime@maaax.com, aka MaaaX^^, aka EPOCH84)
 // * Repository: https://github.com/EPOCH84/Balise_Identification_A_Distance_UAV_DGAC
-// * Based on:
+// * Based on: 
 // * - https://github.com/fanfanlatulipe26/BaliseDGAC_GPS_Logger
 // * - https://github.com/dev-fred/GPS_Tracker_ESP8266
 // * - https://github.com/khancyr/droneID_FR
@@ -11,43 +11,33 @@
 // * - https://github.com/f5soh/balise_esp32
 // * - https://www.tranquille-informatique.fr/modelisme/divers/balise-dgac-signalement-electronique-a-distance-drone-aeromodelisme.html
 // ************************************************************************************************
-// LICENCE GPL V3:
+// GPL V3:
 // This program is free software: you can redistribute it and/or modify it under the terms of the
 // GNU General Public License as published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
 // This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 // without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 // See the GNU General Public License for more details.
-//
+// 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 // ================================================================================================
 
-#if !defined(MAIN_H)
-#define MAIN_H
+#if !defined(BIADUD_BEACON_H)
+#define BIADUD_BEACON_H
 
-
-#if defined(TARGET_ESP32)
-	#if defined(TARGET_ESP32C3)
-		#pragma message "Build for ESP32-C3 board."
-	#elif defined(TARGET_ESP32S3)
-		#pragma message "Build for ESP32-S3 board."
-	#else
-		#pragma message "Build for ESP32 board."
-	#endif
-#elif defined(TARGET_ESP8266)
-	#pragma message "Build for ESP8266 board."
-#else
-	#error "You can build for ESP8266, ESP32, ESP32-C3 or ESP32-S3 boards only !"
-#endif
 
 #include <Arduino.h>
-#include "biadud_options.h"
-#include "biadud_preferences.h"
-#include "biadud_wifi.h"
-#include "biadud_web.h"
-#include "biadud_gps.h"
-#include "biadud_beacon.h"
 
 
-#endif // #if !defined(MAIN_H)
+const char  beacon_version[]    = "0.01.000";
+
+// UAV ID
+char		uav_id[31]	    	= "000MB1000000000000000000000001";
+				    			// CCC								Constructor code (must be set to "000" for DIY maker)
+					    		//    MMM							Beacon model (you can modify it) (e.g.: MB1 here is for "MaaaX's Beacon 1")
+						    	//       111111111111				First mid part of the serial number (you can modify it)
+							    //                   222222222222	Last mid part of the serial number (this part will be replaced by MAC address of the board to be unique)
+
+
+#endif // #if !defined(BIADUD_BEACON_H)
